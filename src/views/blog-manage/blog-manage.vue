@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-manage">
+  <div class="blog-manage wrapper-main">
     blog
   </div>
 </template>

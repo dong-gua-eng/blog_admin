@@ -5,6 +5,7 @@
       <el-menu
         @open="handleOpen"
         @close="handleClose"
+        :collapse="isCollapse"
         class="el-menu-sidebar"
         background-color="#545c64"
         text-color="#fff"
@@ -14,8 +15,8 @@
           <i class="el-icon-menu"></i>
           <span slot="title">首页</span>
         </el-menu-item>
-        <el-submenu index="1">
-          <template slot="title">
+        <!-- <el-submenu index="1">
+          <template slot="title" @click="toBlogManage">
             <i class="el-icon-location"></i>
             <span slot="title">博客管理</span>
           </template>
@@ -23,10 +24,14 @@
             <el-menu-item index="1-1">选项1</el-menu-item>
             <el-menu-item index="1-2">选项2</el-menu-item>
           </el-menu-item-group>
-        </el-submenu>
+        </el-submenu> -->
         <el-menu-item index="4" @click="toUserManage">
           <i class="el-icon-setting"></i>
           <span slot="title">用户管理</span>
+        </el-menu-item>
+        <el-menu-item index="1" @click="toBlogManage">
+          <i class="el-icon-location"></i>
+          <span slot="title">博客管理</span>
         </el-menu-item>
       </el-menu>
     </div>
@@ -40,9 +45,8 @@
         >
           <el-submenu index="1">
             <template slot="title">admin</template>
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-            <el-menu-item index="1-3">退出</el-menu-item>
+            <el-menu-item index="1-1">个人中心</el-menu-item>
+            <el-menu-item index="1-2" @click="dropBtn">退出</el-menu-item>
           </el-submenu>
         </el-menu>
       </div>
@@ -57,7 +61,8 @@
 export default {
   data() {
     return {
-      activeIndex: '1'
+      activeIndex: '1',
+      isCollapse: false
     };
   },
   methods: {
@@ -69,6 +74,12 @@ export default {
     },
     toUserManage() {
       this.$router.push({ path: '/main-view/user-manage' });
+    },
+    toBlogManage() {
+      this.$router.push({ path: '/main-view/blog-manage' });
+    },
+    dropBtn() {
+      this.$router.push({ path: '/' });
     }
   }
 };
